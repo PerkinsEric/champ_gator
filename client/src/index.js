@@ -5,14 +5,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import MenuProvider from './providers/MenuProvider';
+import ReviewProvider from './providers/ReviewProvider';
+import ReservationProvider from './providers/ReservationProvider';
+import AuthProvider from './providers/AuthProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <MenuProvider>
-        <App />
-      </MenuProvider>
+      <AuthProvider>
+        <MenuProvider>
+        <ReservationProvider>
+          <ReviewProvider> 
+           <App />
+          </ReviewProvider>
+        </ReservationProvider>
+        </MenuProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

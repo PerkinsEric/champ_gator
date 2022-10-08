@@ -3,6 +3,11 @@ Rails.application.routes.draw do
  
   namespace :api do
     resources :menus 
-  end
 
+    resources :users do
+      resources :reservations
+      resources :reviews
+    end
+      
+  end
 end
