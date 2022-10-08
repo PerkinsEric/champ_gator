@@ -3,13 +3,14 @@ import { useParams, useLocation } from 'react-router-dom';
 import ReservationList from './ReservationList';
 import { Modal, Button } from 'react-bootstrap';
 import ReservationForm from './ReservationForm';
+
 import { ReservationConsumer } from '../../providers/ReservationProvider';
 
-const Reservations = ({ getAllReservations, getAllUnreservedUsers, unreservedUsers, Reservations}) => {
+const Reservations = ({ getAllReservations, getAllUnreservedUsers, unreservedUsers, reservations}) => {
   const { userId } = useParams()
-  const [adding, setAdd] = useState(false)
   const location = useLocation()
   const { Title } = location.state
+  const [adding, setAdd] = useState(false)
 
   useEffect( () => {
     getAllReservations(userId)
@@ -24,7 +25,7 @@ const Reservations = ({ getAllReservations, getAllUnreservedUsers, unreservedUse
 
       <Modal show={adding} onHide={() => setAdd(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>All Reservations</Modal.Title>
+          <Modal.Title>Make a reservation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ReservationForm 
@@ -34,9 +35,9 @@ const Reservations = ({ getAllReservations, getAllUnreservedUsers, unreservedUse
           />
         </Modal.Body>
       </Modal>
-      <h1>All Reservations {Title}</h1>
+      <h1>All reservations for the user {Title}</h1>
       <ReservationList 
-        Reservations={Reservations}
+        reservations={reservations}
       />
     </>
   )
