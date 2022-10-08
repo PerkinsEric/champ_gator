@@ -1,13 +1,13 @@
 import { ListGroup, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const MenuList = ({ menus }) => (
+const ItemList = ({ items }) => (
   <>
     <ListGroup variant='flush'>
-      { menus.map( m =>
-        <ListGroup.Item key={m.id}>
-          {m.name} {m.mtime}
-          <Link to={`${m.id}/items`}>
+      { items.map( i =>
+        <ListGroup.Item key={i.id}>
+          {i.first_name} {i.last_name}
+          <Link to={`/items/${i.id}`}>
             <Button>Show</Button>
           </Link>
         </ListGroup.Item>
@@ -16,4 +16,4 @@ const MenuList = ({ menus }) => (
   </>
 )
 
-export default MenuList;
+export default ItemList;

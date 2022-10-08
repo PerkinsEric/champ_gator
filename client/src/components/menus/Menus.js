@@ -9,7 +9,7 @@ const Menus = ({ addMenu, menus, getMenus }) => {
     
   useEffect(() => {
     getMenus()
-  }, [])
+  }, [adding])
 
   return (
     <>

@@ -14,7 +14,7 @@ class Api::MenusController < ApplicationController
     if @menu.save 
       render json: @menu
     else
-      render json: { errors: @menu.error }, status: :unprocessable_entity
+      render json: { errors: @menu.errors }, status: :unprocessable_entity
     end
   end
 
@@ -22,7 +22,7 @@ class Api::MenusController < ApplicationController
     if @menu.update(menu_params)
       render json: @menu
     else 
-      render json: { errors: @menu.error }, status: :unprocessable_entity
+      render json: { errors: @menu.errors }, status: :unprocessable_entity
     end
   end
 
@@ -33,11 +33,11 @@ class Api::MenusController < ApplicationController
 
   private 
 
-    def house_params
-      params.require(:menu).permit(:menu_name, :mtime )
+    def menu_params
+      params.require(:menu).permit(:name, :mtime )
     end
 
-    def set_house
+    def set_item
       @menu = Menu.find(params[:id])
     end
 end

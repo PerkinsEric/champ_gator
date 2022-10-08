@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Image, Button } from "react-bootstrap";
-//import {ItemList} from "./../items/ItemList"
+import {ItemList} from "./../items/ItemList"
 import { MenuConsumer } from "../../providers/MenuProvider";
 import MenuForm from "./MenuForm";
 
@@ -63,7 +63,7 @@ const MenuShow = ({ updateMenu, deleteMenu }) => {
           </Button>
           <br />
           <h1>All Items in Menu</h1>
-          <MenuList items={menuItems} />
+          <ItemList items={menuItems} />
         </>
       }
     </>
