@@ -10,7 +10,7 @@ import Login from "./components/auth/Login";
 const App = () => (
 <>
     <Routes>
-    {/* <Route path="/" element={ <Home /> } /> */}
+    <Route path="/" element={ <Menus /> } />
       <Route path="/menus" element={ <Menus /> } />
       <Route path='/:userId/reservations' element={ <Reservations /> } />
       <Route path='/:userId/reviews' element={ <Reviews /> } />
