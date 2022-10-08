@@ -30,7 +30,7 @@ const MenuForm = ({ addMenu, setAdd, id, name, mtime, updateMenu, setEdit }) => 
           <Form.Control 
             name='name'
             value={menu.name}
-            onChange={(e) => setMenu({...menu, house_name: e.target.value })}
+            onChange={(e) => setMenu({...menu, name: e.target.value })}
             placeholder="menu name" 
             required
           />
@@ -40,7 +40,7 @@ const MenuForm = ({ addMenu, setAdd, id, name, mtime, updateMenu, setEdit }) => 
           <Form.Control 
             name='time'
             value={menu.mtime}
-            onChange={(e) => setMenu({...menu, address: e.target.value })}
+            onChange={(e) => setMenu({...menu, mtime: e.target.value })}
             placeholder="time" 
             required
           />
