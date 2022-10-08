@@ -6,7 +6,7 @@ export const ReviewContext = React.createContext();
 
 export const ReviewConsumer = ReviewContext.Consumer; 
 
-const ReviewContext = ({ children }) => {
+const ReviewProvider = ({ children }) => {
   const [reviews, setReviews] = useState([])
   const [errors, setErrors] = useState(null)
   const navigate = useNavigate()

@@ -6,19 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import MenuProvider from './providers/MenuProvider';
 import ReviewProvider from './providers/ReviewProvider';
+import ReservationProvider from './providers/ReservationProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <MenuProvider>
-        <App />
+        <ReservationProvider>
+          <ReviewProvider> 
+           <App />
+          </ReviewProvider>
+        </ReservationProvider>
       </MenuProvider>
     </BrowserRouter>
-    <ReviewProvider>
-
-      <App />
-    </ReviewProvider>
   </React.StrictMode>
 );
 
