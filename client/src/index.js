@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import MenuProvider from './providers/MenuProvider';
+import ReviewProvider from './providers/ReviewProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,10 @@ root.render(
         <App />
       </MenuProvider>
     </BrowserRouter>
+    <ReviewProvider>
+
+      <App />
+    </ReviewProvider>
   </React.StrictMode>
 );
 

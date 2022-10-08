@@ -1,3 +1,4 @@
+
 import { Routes, Route } from "react-router-dom";
 
 import Menus from "./components/menus/Menus"
@@ -10,7 +11,8 @@ const App = () => (
     <Routes>
       <Route path="/menus" element={ <Menus /> } />
     </Routes>
-  </>
+  <>
+  
 )
 
 export default App;
