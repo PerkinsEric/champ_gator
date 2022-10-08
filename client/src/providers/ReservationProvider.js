@@ -8,15 +8,15 @@ export const ReservationConsumer = ReservationContext.Consumer;
 
 const ReservationProvider = ({ children }) => {
   const [Reservations, setReservations] = useState([])
-  const [unreservedUsers, setUsers] = useState([])
+  const [UnreservedUsers, setUsers] = useState([])
 
-  const getAllReservations = (user Id) => {
+  const getAllReservations = (userId) => {
     axios.get(`/api/users/${userId}/Reservations`)
       .then( res => setReservations(res.data))
       .catch( err => console.log(err))
   }
 
-  const getAllunreservedUsers = (userId) => {
+  const getAllUnreservedUsers = (userId) => {
     axios.get(`/api/users/${userId}/unreserved`)
       .then( res => setUsers(res.data))
       .catch( err => console.log(err))
@@ -53,12 +53,11 @@ const ReservationProvider = ({ children }) => {
   return (
     <ReservationContext.Provider value={{
       Reservations,
-      unreservedUsers,
-      getAllReservations,
-      getAllUnreservedUsers, 
-      addReservation,
+      UnreservedUsers,
       updateReservation,
       deleteReservation,
+      getAllReservations,
+      getAllUnreservedUsers
     }}>
       { children }
     </ReservationContext.Provider>

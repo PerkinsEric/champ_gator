@@ -9,11 +9,11 @@ const AuthProvider = ({ children }) => {
     const [errors, setErrors] = useState(null)
 
     const handleRegister = (user) => {
-        axios.post('/api/user', user ) 
+        axios.post('/api/auth', user ) 
             .then( res => {
                 setUser(res.data.data)
             })
-            .catchh( err => {
+            .catch( err => {
                 console.log(err)
                 setErrors({
                     variant: 'danger',

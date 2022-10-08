@@ -1,7 +1,7 @@
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { useState } from "react";
 import Flash from "../shared/Flash";
-import { propTypes } from "react-bootstrap/esm/Image";
+// import { propTypes } from "react-bootstrap/esm/Image";
 
 const Register = ({ handleRegister, errors, setErrors}) => {
 
@@ -10,15 +10,15 @@ const Register = ({ handleRegister, errors, setErrors}) => {
         name: '',
         nickname: '',
         password: '',
-        passwordConformation: '' 
+        passwordConfirmation: '' 
     })
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (user.password === user.passwordConformation){
-            handleRegister(user)
+        if (user.password === user.passwordConfirmation){
+            handleRegister({email:user.email, name:user.name, nickname:user.nickname, password:user.password})
         } else {
-            alert('Password Do Not Match')
+            alert('Passwords Do Not Match')
         }
     }
 
@@ -68,12 +68,12 @@ const Register = ({ handleRegister, errors, setErrors}) => {
                     required
                     placeholder='Password'
                 />
-                <label>Passwrod Conformation</label>
+                <label>Password Confirmation</label>
                 <input 
                     type='password'
                     name='passwordConfirmation'
-                    value={user.passwordConformation}
-                    onChange={ (e) => setUser({ ...user, passwordConformation: e.target.value })}
+                    value={user.passwordConfirmation}
+                    onChange={ (e) => setUser({ ...user, passwordConfirmation: e.target.value })}
                     required
                     placeholder='Password Confirmation'
                 />

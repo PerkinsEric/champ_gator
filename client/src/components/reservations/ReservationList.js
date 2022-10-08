@@ -1,4 +1,4 @@
-mport { Container, ListGroup } from 'react-bootstrap';
+import { Container, ListGroup } from 'react-bootstrap';
 import ReservationShow from './ReservationShow';
 
 const ReservationList = ({ reservations }) => (
