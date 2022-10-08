@@ -21,6 +21,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_171813) do
     t.datetime "updated_at", null: false
   end
 
+ActiveRecord::Schema[7.0].define(version: 2022_10_08_171439) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "score"
+    t.text "comment"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.string "name"
     t.date "rdate"
@@ -28,7 +42,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_171813) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_reservations_on_user_id"
+
   end
+
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -61,4 +77,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_171813) do
   end
 
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "users"
 end
