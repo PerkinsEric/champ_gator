@@ -6,7 +6,7 @@ export const ReviewContext = React.createContext();
 
 export const ReviewConsumer = ReviewContext.Consumer; 
 
-const ReviewContext = ({ children }) => {
+const ReviewProvider = ({ children }) => {
   const [reviews, setReviews] = useState([])
   const [errors, setErrors] = useState(null)
   const navigate = useNavigate()
@@ -24,7 +24,7 @@ const ReviewContext = ({ children }) => {
 
   const addReview = (userId, review) => {
     axios.post(`/api/users/${userId}/reviews`, { review })
-      .then( res => setReviews([...notes, res.data]))
+      .then( res => setReviews([...reviews, res.data]))
       .catch(err => {
         setErrors({ 
           variant: 'danger',
@@ -33,17 +33,17 @@ const ReviewContext = ({ children }) => {
       })
   }
 
-  const updateReview = (catId, id, note) => {
-    axios.put(`/api/cats/${catId}/notes/${id}`, { note })
+  const updateReview = (reviewId, id, review) => {
+    axios.put(`/api/reviews/${reviewId}/review/${id}`, { review })
       .then( res => {
-        const newUpdatedReviews = notes.map(n => {
-          if (n.id !== id) {
+        const newUpdatedReviews = reviews.map(r => {
+          if (r.id !== id) {
             return res.data
           }
-          return n
+          return r
         })
         setReviews(newUpdatedReviews)
-        navigate(`/${catId}/notes`)
+        navigate(`/${reviewId}/reviews`)
         window.location.reload()
       })
       .catch(err => {
@@ -54,7 +54,7 @@ const ReviewContext = ({ children }) => {
       })
   }
 
-  const deleteReview = (catReview, id) => {
+  const deleteReview = (reviewId, id) => {
     axios.delete(`/api/reviews/${reviewId}/reviews/${id}`)
       .then(res => {
         setReviews(reviews.filter(r => r.id !== id))

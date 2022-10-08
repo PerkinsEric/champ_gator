@@ -10,7 +10,7 @@ const ReservationProvider = ({ children }) => {
   const [Reservations, setReservations] = useState([])
   const [unreservedUsers, setUsers] = useState([])
 
-  const getAllReservations = (user Id) => {
+  const getAllReservations = (userId) => {
     axios.get(`/api/users/${userId}/Reservations`)
       .then( res => setReservations(res.data))
       .catch( err => console.log(err))

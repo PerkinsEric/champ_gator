@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { ReservationConsumer } from '../../providers/ReservationProvider';
 
-const ReservationForm = ({ addReserve, setAdd, unreservedUsers, id, user_id, updateReserve, setEdit }) => {
 const ReservationForm = ({ addReserve, setAdd, unreservedUsers, id, user_id, updateReserve, setEdit, userId }) => {
   const [Reservation, setReservation] = useState({ user_id: 0 })
 
@@ -51,7 +50,6 @@ const ReservationForm = ({ addReserve, setAdd, unreservedUsers, id, user_id, upd
   )
 }
 
-export default ReservationForm;
 const ConnectedReservationForm = (props) => (
   <ReservationConsumer>
     { value => <ReservationForm {...value} {...props} /> }
