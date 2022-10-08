@@ -19,20 +19,30 @@ const ReviewProvider = ({ children }) => {
 
   const addReview = (userId, review) => {
     axios.post(`/api/users/${userId}/reviews`, { review })
-    .then( res => setReviews([...reviews, res.data]))
-    .catch( err => console.log(err))
-}
-
-  const updateReview = (userId, id, note) => {
-    axios.put(`/api/users/${userId}/reviews/${id}`, { reviews })
-      .then( res => {
-        const newUpdatedReviews = reviews.map(n => {
-          if (n.id !== id) {
-            return res.data
-          }
-          return n
-        })
         setReviews(newUpdatedReviews)
+        navigate(`/${reviewId}/reviews`)
+        window.location.reload()
+      })
+      .catch(err => {
+        setErrors({ 
+          variant: 'danger',
+          msg: Object.keys(err.response.data.errors)[0] + " " + Object.values(err.response.data.errors)[0][0]
+        })
+      })
+  }
+
+  const deleteReview = (reviewId, id) => {
+    axios.delete(`/api/reviews/${reviewId}/reviews/${id}`)
+      .then(res => {
+        setReviews(reviews.filter(r => r.id !== id))
+      })
+      .catch(err => {
+        setErrors({ 
+          variant: 'danger',
+          msg: err.response.data.errors[0]
+        })
+      })
+  }
         // navigate(`/${userId}/reviews`)
         window.location.reload()
       })

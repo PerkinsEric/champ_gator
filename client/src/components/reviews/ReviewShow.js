@@ -1,15 +1,15 @@
-import { Card, Modal, Button, Container, Row, Col, Image } from 'react-bootstrap';
-import { UserConsumer } from '../../providers/UserProvider';
+import { Card, Modal, Button, Container, Row, Col, } from 'react-bootstrap';
+import { ReviewConsumer } from '../../providers/ReviewProvider';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const ReviewShow = ({ id, name, breed, registry, avatar, deleteCat }) => {
+const ReviewShow = ({ id, name, review, registry, deleteReview }) => {
   const [showing, setShow] = useState(false)
 
   return (
     <>
       <Card style={{ width: '12rem' }}>
-        <Card.Img variant="top" src={avatar} width='200px' height='200px' />
+     {/* Card.Img var   <iant="top" src={avatar} width='200px' height='200px' /> */}
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Button 
@@ -27,25 +27,25 @@ const ReviewShow = ({ id, name, breed, registry, avatar, deleteCat }) => {
               <Container>
                 <Row>
                   <Col>
-                    Breed: {breed}
+                   Name: {name}
                     <br />
                     Registry: {registry}
                     <br />
                     <Link 
-                      to={`/${id}/updateCat`}
-                      state={{ name, breed, registry, avatar }}
+                      to={`/${id}/updateReview`}
+                      state={{ name, review, registry, }}
                     >
                       <Button>Edit</Button>
                     </Link>
                     <Button
-                      onClick={() => deleteCat(id)}
+                      onClick={() => deleteReview(id)}
                     >
                       Delete
                     </Button>
-                    <Button>Notes</Button>
+                    <Button>Review</Button>
                   </Col>
                   <Col>
-                    <Image src={avatar} width='200px' height='200px' />
+                    {/* <Image src={avatar} width='200px' height='200px' /> */}
                   </Col>
                 </Row>
               </Container>
@@ -57,10 +57,10 @@ const ReviewShow = ({ id, name, breed, registry, avatar, deleteCat }) => {
   )
 }
 
-const ConnectedCatShow = (props) => (
-  <CatConsumer>
-    { value => <CatShow {...props} {...value} />}
-  </CatConsumer>
+const ConnectedReviewShow = (props) => (
+  <ReviewConsumer>
+    { value => <ReviewShow {...props} {...value} />}
+  </ReviewConsumer>
 )
 
-export default ConnectedCatShow;
+export default ConnectedReviewShow;
