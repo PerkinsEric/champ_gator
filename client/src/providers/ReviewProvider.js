@@ -14,34 +14,11 @@ const ReviewProvider = ({ children }) => {
   const getAllReviews = (userId) => {
     axios.get(`/api/reviews/${userId}/user`)
       .then( res => setReviews(res.data))
-      .catch(err => {
-        setErrors({ 
-          variant: 'danger',
-          msg: err.response.data.errors[0]
-        })
-      })
+      .catch( err => console.log(err))
   }
 
   const addReview = (userId, review) => {
     axios.post(`/api/users/${userId}/reviews`, { review })
-      .then( res => setReviews([...reviews, res.data]))
-      .catch(err => {
-        setErrors({ 
-          variant: 'danger',
-          msg: Object.keys(err.response.data.errors)[0] + " " + Object.values(err.response.data.errors)[0][0]
-        })
-      })
-  }
-
-  const updateReview = (reviewId, id, review) => {
-    axios.put(`/api/reviews/${reviewId}/review/${id}`, { review })
-      .then( res => {
-        const newUpdatedReviews = reviews.map(r => {
-          if (r.id !== id) {
-            return res.data
-          }
-          return r
-        })
         setReviews(newUpdatedReviews)
         navigate(`/${reviewId}/reviews`)
         window.location.reload()
@@ -66,6 +43,17 @@ const ReviewProvider = ({ children }) => {
         })
       })
   }
+        // navigate(`/${userId}/reviews`)
+        window.location.reload()
+      })
+      .catch( err => console.log(err))
+    } 
+
+  const deleteReview = (userId, id) => {
+    axios.delete(`/api/users/${userId}/reviews/${id}`)
+      .then(res =>  setReviews(reviews.filter(r => r.id !== id)))
+      .catch( err => console.log(err))
+    }
   
   return (
     <ReviewContext.Provider value={{

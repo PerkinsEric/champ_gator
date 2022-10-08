@@ -9,7 +9,8 @@ const Reservations = ({ getAllReservations, getAllUnreservedUsers, unreservedUse
   const { userId } = useParams()
   const [adding, setAdd] = useState(false)
   const location = useLocation()
-  const { Title } = location.state
+  console.log(location)
+  // const { Title } = location.state
 
   useEffect( () => {
     getAllReservations(userId)
@@ -34,10 +35,10 @@ const Reservations = ({ getAllReservations, getAllUnreservedUsers, unreservedUse
           />
         </Modal.Body>
       </Modal>
-      <h1>All Reservations {Title}</h1>
-      <ReservationList 
+      <h1>All Reservations </h1>
+      {/* <ReservationList 
         Reservations={Reservations}
-      />
+      /> */}
     </>
   )
 }

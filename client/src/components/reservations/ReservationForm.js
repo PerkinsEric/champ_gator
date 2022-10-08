@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { ReservationConsumer } from '../../providers/ReservationProvider';
-
-const ReservationForm = ({ addReserve, setAdd, unreservedUsers, id, user_id, updateReserve, setEdit, userId }) => {
+const ReservationForm = ({ addReservation, setAdd, unreservedUsers, id, user_id, updateReservation, setEdit, userId }) => {
   const [Reservation, setReservation] = useState({ user_id: 0 })
 
   useEffect( () => {
@@ -10,15 +9,14 @@ const ReservationForm = ({ addReserve, setAdd, unreservedUsers, id, user_id, upd
       setReservation({ user_id })
     }
   }, [])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (id) {
-      updateReservation(id, reservation)
-      updateReservation(userId, id, reservation)
+      updateReservation(userId, id, Reservation)
       setEdit(false)
     } else {
-      addReservation(reservation)
-      addReservation(userId, reservation)
+      addReservation(userId, Reservation)
       setAdd(false)
     }
     setReservation({ user_id: 0 })
@@ -30,12 +28,12 @@ const ReservationForm = ({ addReserve, setAdd, unreservedUsers, id, user_id, upd
           <Form.Label>User</Form.Label>
           <Form.Select
             name='user_id'
-            value={reservation.user_id}
+            value={Reservation.user_id}
             onChange={(e) => setReservation({...Reservation, user_id: parseInt(e.target.value) })}
             required
           >
             <option>Choose a user</option>
-            { unReservedUsers.map( u => 
+            { unreservedUsers.map( u => 
               <option value={u.id} key={u.id}>
                 {u.name} 
               </option>
